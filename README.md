@@ -1,11 +1,11 @@
-# **WELCOME TO DELTA BOOKINGS!**
+# **WELCOME TO AUTOSAN!**
 
 ## **Table of contents**
 
 - [What is Autosan?](#what-is-Autosan?)
 - [Usability]("#usability)
-  - [Tools used](#tools-used)
-  - [Basic Commands](#basic-commands)
+- [Tools used](#tools-used)
+- [Basic Commands](#basic-commands)
 - [Screenshots](#screenshots)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
