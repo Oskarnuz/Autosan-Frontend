@@ -1,16 +1,16 @@
 import Head from 'next/head';
-import CustomerPage from './CustomerPage';
 import Link from 'next/link';
 import styles from '@/styles/Home.module.css';
+import Navbar from '../components/Navbar';
 
 export default function Home() {
   return (
     <div>
       <Head>
         <title>Inicio - Mi Taller Automotriz</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Navbar/>
         <h1>AUTOSAN</h1>
         <div className={styles.buttonsContainer}>
           <Link href={'/UserPage'} passHref>
@@ -26,8 +26,7 @@ export default function Home() {
               <div className={styles.buttonContainer}>
                 <div className={styles.button}>Clientes</div>
               </div>
-            
-            
+
           </Link>
           <Link href={'/VehiclePage'} passHref>
             
@@ -35,6 +34,13 @@ export default function Home() {
                 <div className={styles.button}>Vehiculos</div>
               </div>
             
+          </Link>
+
+          <Link href={'/InventarioPage'} passHref>
+            
+              <div className={styles.buttonContainer}>
+                <div className={styles.button}>Inventario</div>
+              </div>
             
           </Link>
         </div>

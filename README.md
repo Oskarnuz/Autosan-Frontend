@@ -1,34 +1,79 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# **WELCOME TO DELTA BOOKINGS!**
 
-## Getting Started
+## **Table of contents**
 
-First, run the development server:
+- [What is Autosan?](#what-is-Autosan?)
+- [Usability]("#usability)
+  - [Tools used](#tools-used)
+  - [Basic Commands](#basic-commands)
+- [Screenshots](#screenshots)
+- [Authors](#authors)
+- [Acknowledgments](#acknowledgments)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+<br />
+
+# **What is Autosan?**
+
+&nbsp;&nbsp;&nbsp;&nbsp;Autosan is a web application for registration and control of vehicles entering the AUTOSAN automotive workshop. The application allows you to have the registration by owner name and by vehicle data, also when entering the vehicle, a check of entry conditions is carried out.
+Finally, this checklist and the service order are printed with the value to be canceled according to the maintenance or repair carried out.
+
+&nbsp;&nbsp;&nbsp;&nbsp;This application is made as an individual project in the Make it Real TopV27 bootcamp
+
+<br />
+
+# **Usability**
+
+Users should be capable of:
+
+- Log-in / log-out
+- Vehicle register
+- Customer Register
+- Check List vehicle review
+- Print Service Order
+- Print Check List
+
+<br />
+
+## **Tools Used**
+
+The software, Libraries, API’s & platforms used for this project
+consist of:
+
+```
+- Next
+- Formik
+- CSS Module
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<br />
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+## **Basic Commands**
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Some basic Git commands are:
 
-## Learn More
+```
+npm install
+npm run dev
+```
 
-To learn more about Next.js, take a look at the following resources:
+<br />
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# **Screenshots**
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+[]
 
-## Deploy on Vercel
+<br />
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# **Authors**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- [Oscar Núñez](https://github.com/Oskarnuz)
+
+
+<br />
+
+# **Acknowledgments**
+
+- [MIR (Make It Real)](https://makeitreal.camp)
+- Sergio Jaramillo
+- [W3Schools](https://www.w3schools.com/)
+- [StackOverflow](https://stackoverflow.com)
