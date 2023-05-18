@@ -1,30 +1,49 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
+
 .navbar {
-  background-color: #f2f2f2;
-  padding: 10px;
-}
-
-.navbar ul {
+  background-color: #0b055f;
+  height: 160px;
   display: flex;
-  list-style: none;
-  padding: 0;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 8px;
 }
 
-.navbar li {
-  margin-right: 10px;
+.logo {
+  padding-top: 5px;
 }
 
+.text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+}
+.navbar p {
+  color: white;
+  font-family: 'Caveat', cursive;
+  font-size: 55px;
+}
 .navbar a {
   text-decoration: none;
-  color: #333;
+  color: white;
   font-weight: bold;
+  font-size: 20px;
+  font-family: 'Caveat', cursive;
 }
 
+.login {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+}
 .navbar a:hover {
   color: blue;
 }
 
-.navbar .logo {
-  width: 100px;
-  height: 100px;
-  margin-right: 10px;
-}
+

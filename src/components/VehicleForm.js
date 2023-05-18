@@ -3,6 +3,10 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from '@/styles/VehicleForm.module.css';
 
+import Image from 'next/image';
+
+import logoImg from '../assets/Autosan.png';
+
 const SignupSchema = Yup.object().shape({
   brand: Yup.string()
     .matches(/^[A-Za-z ]+$/, 'Ingrese una marca válida')
@@ -18,7 +22,7 @@ const SignupSchema = Yup.object().shape({
     .required('Ingrese el kilometraje'),
   idCard: Yup.string()
     .matches(/^[A-Za-z0-9]+$/, 'Ingrese un número de identificación válido')
-    .required('Ingrese el número de identificación'),
+    .required('Ingrese la placa'),
   color: Yup.string()
     .required('Ingrese el color'),
   fuel: Yup.string()
@@ -30,7 +34,11 @@ const SignupSchema = Yup.object().shape({
 
 const VehicleForm = () => {
   return (
-    <div className={styles.formContainer}>
+    <div className={styles.pageContainer}>
+      <div className={styles.formContainer}>
+      <div className={styles.logo}>
+          <Image src={logoImg} alt="Logo Autosan" width={140} height={70} />
+      </div>
       <h2 className={styles.formTitle}>DATOS DEL VEHÍCULO</h2>
       <Formik
         initialValues={{
@@ -79,7 +87,7 @@ const VehicleForm = () => {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="idCard">Número de identificación:</label>
+              <label htmlFor="idCard">Placa:</label>
               <Field type="text" name="idCard" />
               <ErrorMessage name="idCard" component="div" className={styles.formError} />
             </div>
@@ -109,12 +117,14 @@ const VehicleForm = () => {
             </div>
 
             <button type="submit" disabled={isSubmitting} className={styles.button}>
-              Enviar
+              Finalizar
             </button>
           </Form>
         )}
       </Formik>
     </div>
+    </div>
+    
   );
 };
 

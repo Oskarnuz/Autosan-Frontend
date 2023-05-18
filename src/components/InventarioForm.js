@@ -2,33 +2,33 @@ import { Formik, Form, Field } from 'formik';
 import styles from '@/styles/InventarioForm.module.css';
 
 const initialValues = {
-  radio: '',
-  encendedor: '',
-  pito: '',
-  alarma: '',
-  llavero: '',
-  plumillas: '',
-  tapetes: '',
-  espejos: '',
-  caja_cd: '',
-  planta: '',
-  dvd: '',
-  llanta_repuesto: '',
-  gato: '',
-  cruceta: '',
-  extintor: '',
-  kit_carretera: '',
-  herramientas: '',
-  tapa_gasolina: '',
-  copas: '',
-  antena: '',
-  chapas: '',
-  luces: '',
-  vidrios_electricos: '',
-  tarjeta_propiedad: '',
-  seguro_obligatorio: '',
-  revision_tecnicomecanica: '',
-  poliza_garantia: ''
+  radio: "si",
+  encendedor: 'si',
+  pito: 'si',
+  alarma: 'si',
+  llavero: 'si',
+  plumillas: 'si',
+  tapetes: 'si',
+  espejos: 'si',
+  caja_cd: 'si',
+  planta: 'si',
+  dvd: 'si',
+  llanta_repuesto: 'si',
+  gato: 'si',
+  cruceta: 'si',
+  extintor: 'si',
+  kit_carretera: 'si',
+  herramientas: 'si',
+  tapa_gasolina: 'si',
+  copas: 'si',
+  antena: 'si',
+  chapas: 'si',
+  luces: 'si',
+  vidrios_electricos: 'si',
+  tarjeta_propiedad: 'si',
+  seguro_obligatorio: 'si',
+  revision_tecnicomecanica: 'si',
+  poliza_garantia: 'si'
 };
 
 const handleSubmit = (values) => {
@@ -72,53 +72,114 @@ const InventarioForm = () => {
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
       <Form className={styles.formContainer}>
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Descripción</th>
-              <th>Sí</th>
-              <th>No</th>
-            </tr>
-          </thead>
-          <tbody>
-            {fieldsInv.map((field) => (
-              <tr key={field.name}>
-                <td>{field.label}</td>
-                <td>
-                  <Field type="radio" name={field.name} value="si" />
-                </td>
-                <td>
-                  <Field type="radio" name={field.name} value="no" />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      <div className={styles.container}>
+        <div className={styles.left_section}>
+          <section>
+            <h2>Inventario</h2>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Descripción </th>
+                  <th>Sí</th>
+                  <th>No</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fieldsInv.map((field) => (
+                  <tr key={field.name}>
+                    <td>{field.label}</td>
+                    <td>
+                      <Field type="radio" name={field.name} value="si" defaultChecked />
+                    </td>
+                    <td>
+                      <Field type="radio" name={field.name} value="no" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </section>
+          </div>
 
+        <div className={styles.mid_section}>
         <h2>Documentos</h2>
 
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Descripción</th>
-              <th>Sí</th>
-              <th>No</th>
-            </tr>
-          </thead>
-          <tbody>
-            {fieldsDoc.map((field) => (
-              <tr key={field.name}>
-                <td>{field.label}</td>
-                <td>
-                  <Field type="radio" name={field.name} value="si" />
-                </td>
-                <td>
-                  <Field type="radio" name={field.name} value="no" />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+          <section>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Descripción</th>
+                  <th>Sí</th>
+                  <th>No</th>
+                </tr>
+              </thead>
+              <tbody>
+                {fieldsDoc.map((field) => (
+                  <tr key={field.name}>
+                    <td>{field.label}</td>
+                    <td>
+                      <Field type="radio" name={field.name} value="si" defaultChecked />
+                    </td>
+                    <td>
+                      <Field type="radio" name={field.name} value="no" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          
+            <div>
+              <h2>Observaciones del inventario</h2>
+              <textarea className={`${styles.textarea} textarea`} name="observacionesInventario" rows="8" placeholder="Observaciones del inventario"></textarea>
+            </div>
+            <div>
+              <h2>Descripción del Trabajo Autorizado</h2>
+              <textarea className={`${styles.textarea} textarea`} name="descripcionTrabajo" rows="8" placeholder="Descripción del Trabajo Autorizado"></textarea>
+            </div>
+          </section>
+        </div>
+
+          <div className={styles.right_section}>
+            <div>
+              <h2>TARIFA PARQUEADERO</h2>
+              <h2>$ 10.000 (24 HORAS)</h2>
+            </div>
+            <div>
+              <h2>ESTIMADO CLIENTE</h2>
+              <p>
+                Tenga en cuenta que la mano de obra se cancela unicamente en efectivo antes de retirar el vehiculo del taller.
+                AUTOSAN NO asume gastos de gruas.
+                Verificar el trabajo y objetos que quedaron estipulados en el inventario.
+              </p>
+            </div>
+            <div>
+              <h2>NOTA DE AUTORIZACION</h2>
+              <p>
+                Todo vehiculo tiene 2 dias de parqueadero gratis despues de culminado el trabajo, de lo contrario pasara a parqueadero publico, asumiendo el costo y riesgo que esto acarrea.
+                Quedando en conocimiento y aceptando al firmar esta orden de servicio
+              </p>
+              <h2>IMPORTANTE</h2>
+              <p>
+                Doy poder amplio y suficiente a AUTOSAN para revisar, diagnosticar, reparar y suministrar las autopartes necesarias para el de mi vehiculo.
+              </p>
+            </div>
+            <div>
+              <h2>AUTORIZACION DEL TRABAJO</h2>
+              <br />
+              <p>_________________________</p>
+              <h2>C.C. </h2>
+            </div>
+            <div>
+              <h3>
+                SUS DATOS PERSONALES SERAN TRATADOS MEDIANTE LA LEY 1581 DE 2012. AUTOSAN NO SE HACE RESPONSABLE DE OBJETOS DE VALOR DEJADOS DENTRO DEL VEHICULO, SI EL VEHICULO LLEGA SUCIO AL TALLER NO SE HACE RESPONSABLE POR RAYONES O GOLPES QUE NO SE OBSERVAN.
+                AUTORIZO A AUTOSAN PARA REALIZAR LAS PRUEBAS TECNICAS NECESARIAS AL VEHICULO DENTRO DEL PERIMETRO URBANO.
+                NOTA: NO FIRME SIN HABER VERIFICADO QUE LA INFORMACION REGISTRADA CORRESPONDA A LO INFORMADO Y SOLICITADO POR USTED.
+              </h3>
+
+            </div>
+          </div>
+        
+      </div>        
 
         <button type="submit" className={styles.submitButton}>
           Enviar

@@ -1,8 +1,14 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/styles/CustomersForm.module.css';
 import jsPDF from "jspdf";
+import VehiclePage from '@/pages/VehiclePage';
+
+import Image from 'next/image';
+
+import logoImg from '../assets/Autosan.png';
 
 
 const SignupSchema = Yup.object().shape({
@@ -32,9 +38,28 @@ const generatePDF = (values) => {
 };
 
 const CustomersForm = () => {
+  const router = useRouter();
+
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      await generatePDF(values);
+      alert(JSON.stringify(values, null, 2));
+      resetForm();
+      router.replace('/VehiclePage');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
 
   return (
-    <div className={styles.formContainer}>
+    <div className={styles.pageContainer}>
+      <div className={styles.formContainer}>
+      <div className={styles.logo}>
+          <Image src={logoImg} alt="Logo Autosan" width={140} height={70} />
+        </div>
+      
       <h2 className={styles.formTitle}>INFORMACION DEL CLIENTE</h2>
       <Formik
         initialValues={{
@@ -45,15 +70,7 @@ const CustomersForm = () => {
           email: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-            resetForm();
-            generatePDF(values);
-
-          }, 400);
-        }}
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
           <Form className={styles.form}>
@@ -88,13 +105,15 @@ const CustomersForm = () => {
             </div>
 
             <button type="submit" disabled={isSubmitting} className={styles.submitBtn}>
-              Enviar
+              Siguiente
             </button>
 
           </Form>
         )}
       </Formik>
     </div>
+    </div>
+    
   );
 };
 

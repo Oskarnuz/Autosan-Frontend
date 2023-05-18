@@ -1,33 +1,81 @@
 .formContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgb(124, 124, 128);
-  width: 80vw;
-  margin: 20px;
+  justify-content: space-evenly;
 }
 
-.form {
-  background-color: rgb(139, 137, 137);
-  width: 70vw;
-  padding: 20px;
-  border-radius: 10px;
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.left_section {
+  width: 20%;
+  margin-right: 10px;
+  margin-left: 30px;
+}
+
+.mid_section {
+  width: 20%;
+  
+}
+
+.right_section {
+  width: 40%;
+  margin-right: 40px;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px;
   box-shadow: 0px 3px 6px #00000029;
-  margin: 20px;
 }
 
-.formTitle {
-  font-size: 2rem;
-  background-color: rgb(25, 3, 102);
+.right_section h2 {
+  font-size: 20px;
+}
+
+.right_section h3 {
+  font-size: 10px;
+}
+.right_section p {
+  font-size: 18px;  
+}
+
+.textarea {
+  width: 100%;
+}
+
+.table {
+  width: 20vw;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 3px 6px #00000029;
+  margin: 10px;
+}
+
+.table td {
+  font-size: 18px;
+  color: black;
+}
+.table th {
+  font-size: 20px;
   font-weight: bold;
-  color: white;
+  color: black;
+  text-align: left;
 }
 
 .checklistItem {
   margin-bottom: 10px;
 }
 
-.submit-button {
-  margin-top: 20px;
+.submitButton {
+  background-color: #0b055f;
+  color: white;
+  display: flex;
+  margin: 40px auto;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  padding: 10px 50px;
+  font-size: 16px;
+  cursor: pointer;
 }

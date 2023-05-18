@@ -1,0 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
+.footerContent {
+  background-color: #0b055f;
+  height: 60px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  border-radius: 8px;
+  color: white
+}
