@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 import Link from "next/link";
-import Cookies from "js-cookie";
 import jwtDecode from "jwt-decode";
 import axios from "axios";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import logoImg from "../assets/Autosan.png";
 import styles from "@/styles/Navbar.module.css";
+import LoginForm from "./LoginForm";
 
 const Navbar = () => {
   const [fullName, setFullName] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
+  const [cookies, setCookie, removeCookie] = useCookies(["token", "fullName"]);
 
   useEffect(() => {
-    const token = Cookies.get("token");
+    const token = cookies.token;
 
     if (token) {
       const decodedToken = jwtDecode(token);
@@ -22,7 +24,7 @@ const Navbar = () => {
       fetchUserData(id);
       setLoggedIn(true);
     }
-  }, []);
+  }, [cookies.token]);
 
   const fetchUserData = async (userId) => {
     try {
@@ -38,8 +40,9 @@ const Navbar = () => {
   };
 
   const handleLogout = () => {
-    Cookies.remove("token");
+    removeCookie("token");
     setLoggedIn(false);
+    setFullName("");
     router.push("/");
   };
 
@@ -63,7 +66,7 @@ const Navbar = () => {
             </div>
           </div>
         ) : (
-          <div>
+          <div className={styles.log}>
             <div className={styles.signup}>
               <Link href="/UserPage">SignUp</Link>
             </div>
@@ -80,5 +83,3 @@ const Navbar = () => {
 };
 
 export default Navbar;
-
-

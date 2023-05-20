@@ -1,18 +1,21 @@
 import { Formik, Form, Field } from 'formik';
 import styles from '@/styles/Table.module.css'
+import CustomersForm from './CustomersForm';
+import VehicleForm from './VehicleForm';
 
-
+const {fullName, phone, email} = CustomersForm;
+const {brand, model, idCard, color, mileage} = VehicleForm 
 const initialValues = {
   Fecha: '',
   Asesor: '',
-  Kilometraje: '',
-  Cliente: '',
-  Celular: '',
-  Email: '',
-  Marca: '',
-  Modelo: '',
-  Placa: '',
-  Color: ''
+  Kilometraje: mileage,
+  Cliente: fullName,
+  Celular: phone,
+  Email: email,
+  Marca: brand,
+  Modelo: model,
+  Placa: idCard,
+  Color: color
 };
 
 const handleSubmit = (values) => {

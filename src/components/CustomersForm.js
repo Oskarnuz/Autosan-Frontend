@@ -33,7 +33,7 @@ const CustomersForm = () => {
       // alert(JSON.stringify(values, null, 2));
       resetForm();
       const response = await axios.post('http://localhost:8080/api/customer', values);
-      router.replace('/VehiclePage');
+      router.push('/VehiclePage');
     } catch (error) {
       console.error(error);
     } finally {
@@ -105,5 +105,6 @@ const CustomersForm = () => {
   );
 };
 
+export { SignupSchema };
 export default CustomersForm;
 

@@ -28,11 +28,11 @@ const UserForm = () => {
 
   const handleFormSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      
       const response = await axios.post('http://localhost:8080/api/user/signup', values);
-
       
       if (response.status === 201) {
+        const token = response.data.token;
+        localStorage.setItem('token', token);
         alert('Registro exitoso');
         resetForm();
         router.push('/');
@@ -107,3 +107,4 @@ const UserForm = () => {
 };
 
 export default UserForm;
+

@@ -42,7 +42,7 @@ const VehicleForm = () => {
       // alert(JSON.stringify(values, null, 2));
       resetForm();
       const response = await axios.post('http://localhost:8080/api/vehicle', values);
-      router.replace('/InventarioPage');
+      router.push('/InventarioPage');
     } catch (error) {
       console.error(error);
     } finally {
@@ -138,4 +138,5 @@ const VehicleForm = () => {
   );
 };
 
+export { SignupSchema };
 export default VehicleForm;
