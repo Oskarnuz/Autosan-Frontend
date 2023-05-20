@@ -1,7 +1,9 @@
 import React from "react";
+import { useRouter } from 'next/router';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import styles from '@/styles/VehicleForm.module.css';
+import axios from 'axios';
 
 import Image from 'next/image';
 
@@ -27,12 +29,26 @@ const SignupSchema = Yup.object().shape({
     .required('Ingrese el color'),
   fuel: Yup.string()
     .required('Ingrese el tipo de combustible'),
-  video: Yup.string()
+  images: Yup.string()
     .url('Ingrese una URL válida')
-    .required('Ingrese el enlace del video'),
+    .required('Ingrese el enlace del images'),
 });
 
 const VehicleForm = () => {
+  const router = useRouter();
+
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    try {
+      // alert(JSON.stringify(values, null, 2));
+      resetForm();
+      const response = await axios.post('http://localhost:8080/api/vehicle', values);
+      router.replace('/InventarioPage');
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setSubmitting(false);
+    }
+  };
   return (
     <div className={styles.pageContainer}>
       <div className={styles.formContainer}>
@@ -49,16 +65,10 @@ const VehicleForm = () => {
           idCard: '',
           color: '',
           fuel: '',
-          video: '',
+          images: '',
         }}
         validationSchema={SignupSchema}
-        onSubmit={(values, { setSubmitting, resetForm }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-            resetForm();
-          }, 400);
-        }}
+        onSubmit={handleSubmit}
       >
         {({ isSubmitting }) => (
           <Form className={styles.form}>
@@ -111,9 +121,9 @@ const VehicleForm = () => {
             </div>
 
             <div className={styles.formGroup}>
-              <label htmlFor="video">Video:</label>
-              <Field type="text" name="video" />
-              <ErrorMessage name="video" component="div" className={styles.formError} />
+              <label htmlFor="images">Fotos:</label>
+              <Field type="text" name="images" />
+              <ErrorMessage name="images" component="div" className={styles.formError} />
             </div>
 
             <button type="submit" disabled={isSubmitting} className={styles.button}>

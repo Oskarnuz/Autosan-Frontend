@@ -141,7 +141,7 @@ export default function Home() {
           <h2>AUTOSAN</h2>
           <h3>Cra 9 No. 14C -16 Santa Ana</h3>
           <h3>Cel: 312 564 1152</h3>
-          <p>MAPA</p>
+          {/* <p>MAPA</p> */}
         </div>
       </main>
       <Footer />

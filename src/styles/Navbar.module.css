@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
 
 
 .navbar {
@@ -34,6 +34,15 @@
   font-family: 'Caveat', cursive;
 }
 
+.signup {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+
+}
+
 .login {
   display: flex;
   justify-content: flex-end;
@@ -46,4 +55,94 @@
   color: blue;
 }
 
+ */
 
+
+ @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&display=swap');
+
+.navbar {
+  background-color: #0b055f;
+  height: 160px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 8px;
+}
+
+.logo {
+  padding-top: 5px;
+}
+
+.text {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.navbar p {
+  color: white;
+  font-family: 'Caveat', cursive;
+  font-size: 55px;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  font-family: 'Caveat', cursive;
+}
+
+.signup {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.login {
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.navbar a:hover {
+  color: blue;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdownText {
+  cursor: pointer;
+}
+
+.dropdownContent {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdownContent a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdownContent a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}

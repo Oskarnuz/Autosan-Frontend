@@ -1,11 +1,18 @@
+import React from 'react';
 import Image from 'next/image';
 import InventarioForm from '../components/InventarioForm';
 import Table from '../components/Table';
 import styles from '@/styles/InventarioPage.module.css';
-
 import logoImage from '../assets/Autosan.png';
 
 const InventarioPage = () => {
+  const handlePrint = () => {
+    const printOptions = {
+      scale: 0.80,
+    };
+    window.print(printOptions);
+  };
+
   return (
     <section className={styles.container}>
       <div className={styles.ctn_info}>
@@ -26,14 +33,15 @@ const InventarioPage = () => {
         <Table />
       </div>
 
-      <did>
+      <div>
         <div>
           <InventarioForm />
         </div>
-        
-      </did>
-        
+      </div>
 
+      <button className={styles.printButton} onClick={handlePrint}>
+        Imprimir
+      </button>
     </section>
   );
 };

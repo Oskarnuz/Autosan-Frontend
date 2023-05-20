@@ -3,8 +3,7 @@ import { useRouter } from 'next/router';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/styles/CustomersForm.module.css';
-import jsPDF from "jspdf";
-import VehiclePage from '@/pages/VehiclePage';
+import axios from 'axios';
 
 import Image from 'next/image';
 
@@ -20,31 +19,20 @@ const SignupSchema = Yup.object().shape({
     .required('Ingrese su número de identificación'),
   address: Yup.string().required('Ingrese su dirección'),
   phone: Yup.string()
-  .matches(/^[0-9]+$/, 'Ingrese un número válido'),
+  .matches(/^[0-9]+$/, 'Ingrese un número válido')
+  .required('Ingrese su numero de telefono'),
   email: Yup.string().email('Ingrese un correo válido').required('Ingrese su correo electrónico'),
 });
 
-const generatePDF = (values) => {
-  const doc = new jsPDF();
-  doc.setFontSize(18);
-  doc.text('Información del cliente', 10, 20);
-  doc.setFontSize(12);
-  doc.text(`Nombre: ${values.fullName}`, 10, 30);
-  doc.text(`Número de identificación: ${values.identificationCard}`, 10, 40);
-  doc.text(`Dirección: ${values.address}`, 10, 50);
-  doc.text(`Teléfono: ${values.phone}`, 10, 60);
-  doc.text(`Email: ${values.email}`, 10, 70);
-  doc.save('informacion_cliente.pdf');
-};
 
 const CustomersForm = () => {
   const router = useRouter();
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      await generatePDF(values);
-      alert(JSON.stringify(values, null, 2));
+      // alert(JSON.stringify(values, null, 2));
       resetForm();
+      const response = await axios.post('http://localhost:8080/api/customer', values);
       router.replace('/VehiclePage');
     } catch (error) {
       console.error(error);

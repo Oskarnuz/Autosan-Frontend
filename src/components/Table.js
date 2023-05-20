@@ -32,7 +32,7 @@ const Table = () => {
                   <Field type="text" id="fecha" name="fecha" />
                 </td>
                 <td>
-                  <label htmlFor="asesor">Asesor de Servicio No.:</label>
+                  <label htmlFor="asesor">Asesor de Servicio:</label>
                   <Field type="text" id="asesor" name="asesor" />
                 </td>
                 <td>
