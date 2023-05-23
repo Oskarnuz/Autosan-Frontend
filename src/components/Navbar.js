@@ -13,18 +13,18 @@ const Navbar = () => {
   const [fullName, setFullName] = useState("");
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
-  const [cookies, setCookie, removeCookie] = useCookies(["token", "fullName"]);
+  const [cookies, setCookie, removeCookie] = useCookies(['cookieToken', 'cookieName']);
 
   useEffect(() => {
-    const token = cookies.token;
-
+    const token = cookies.cookieToken;
+    
     if (token) {
-      const decodedToken = jwtDecode(token);
-      const { id } = decodedToken;
-      fetchUserData(id);
+      // const decodedToken = jwtDecode(token);
+      // const { id } = decodedToken;
+      
       setLoggedIn(true);
     }
-  }, [cookies.token]);
+  }, []);
 
   const fetchUserData = async (userId) => {
     try {
@@ -57,8 +57,8 @@ const Navbar = () => {
       <div className={styles.login}>
         {loggedIn ? (
           <div className={styles.dropdown}>
-            <span className={styles.dropdownText}>Hello {fullName}</span>
-            <div className={styles.dropdownContent}>
+            <span className={styles.dropdownText}>Hola {fullName} !</span>
+            <div >
               <div onClick={() => router.push("/CustomerPage")}>
                 Customer Page
               </div>

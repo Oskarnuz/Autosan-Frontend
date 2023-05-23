@@ -22,28 +22,30 @@ const LoginForm = () => {
   const [cookies, setCookie] = useCookies(['cookieToken', 'cookieName']);
 
   const handleSubmit = async (values, { setSubmitting }) => {
+    
     try {
       const response = await axios.post('http://localhost:8080/api/user/signin', values);
 
-      const { token } = response.data.data;
+      const { token } = response.data;
+     
       const decoded = jwtDecode(token);
       const { email } = decoded;
       setCookie('cookieToken', token, {
         path: '/',
         maxAge: 1000 * 60 * 60 * 24 * 30,
-        });
+      });
+
       if (response.status === 200) {
         setCookie('cookieToken', token, { path: '/' });
-        const decodedToken = jwtDecode(token);
-        setCookie('cookieName', decodedToken.fullName, { path: '/' });
-        router.push('/');
-
+        setCookie('cookieName', decoded.fullName, { path: '/' });
+        
+        router.push('/CustomerPage');
       } else {
         setError('Credenciales inválidas');
       }
     } catch (error) {
       console.error(error);
-      setError('Error en el servidor');
+      setError('Usuario o contraseña inválidos');
     }
 
     setSubmitting(false);

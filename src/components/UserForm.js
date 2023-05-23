@@ -4,7 +4,7 @@ import * as Yup from "yup";
 import styles from "@/styles/UserForm.module.css";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import axios from 'axios';
+import axios from "axios";
 
 import logoImg from "../assets/Autosan.png";
 
@@ -23,25 +23,27 @@ const SignupSchema = Yup.object().shape({
     ),
 });
 
-const UserForm = () => {
+const SignupForm = () => {
   const router = useRouter();
 
   const handleFormSubmit = async (values, { setSubmitting, resetForm }) => {
+    
     try {
-      const response = await axios.post('http://localhost:8080/api/user/signup', values);
-      
+      const response = await axios.post(
+        "http://localhost:8080/api/user/signup",
+        values
+      );
+
       if (response.status === 201) {
         const token = response.data.token;
-        localStorage.setItem('token', token);
-        alert('Registro exitoso');
         resetForm();
-        router.push('/');
+        router.push("/");
       } else {
-        alert('Error en el registro');
+        alert("Error en el registro");
       }
     } catch (error) {
       console.error(error);
-      alert('Error en el servidor');
+      alert("Error en el servidor");
     }
 
     setSubmitting(false);
@@ -95,7 +97,11 @@ const UserForm = () => {
                 />
               </div>
 
-              <button type="submit" disabled={isSubmitting} className={styles.button}>
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className={styles.button}
+              >
                 ENVIAR
               </button>
             </Form>
@@ -106,5 +112,6 @@ const UserForm = () => {
   );
 };
 
-export default UserForm;
+export default SignupForm;
+
 
