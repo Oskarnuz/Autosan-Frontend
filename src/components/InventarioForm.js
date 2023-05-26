@@ -34,29 +34,25 @@ const initialValues = {
   poliza_garantia: 'true'
 };
 
-const handleSubmit = async (values) => {
-  try {
-    
-    const response = await fetch('http://localhost:8080/api/order', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(values),
-    });
 
-    if (response.ok) {
-      handleImprimirClick();
-    } else {
-      console.log('Error al enviar los datos del formulario');
-    }
-  } catch (error) {
-    console.log('Error al enviar los datos del formulario', error);
-  }
-};
 
 const InventarioForm = () => {
   const [formularioVisible, setFormularioVisible] = useState(true);
+
+  const handleSubmit = async (values) => {
+    console.log("aqui voy", values)
+    try {
+      const response = await axios.post('http://localhost:8080/api/order', values);
+      console.log(response)
+      if (response.status === 200) {
+       // handleImprimirClick();
+      } else {
+        console.log('Error al enviar los datos del formulario');
+      }
+    } catch (error) {
+      console.log('Error al enviar los datos del formulario', error);
+    }
+  };
 
   const fieldsInv = [
     { name: 'radio', label: 'Radio' },
@@ -86,9 +82,9 @@ const InventarioForm = () => {
 
   const fieldsDoc = [
     { name: 'tarjeta_propiedad', label: 'Tarjeta de Propiedad' },
-      { name: 'seguro_obligatorio', label: 'Seguro Obligatorio' },
-      { name: 'revision_tecnicomecanica', label: 'Revisión Tecnicomecánica' },
-      { name: 'poliza_garantia', label: 'Poliza de Garantia' }
+    { name: 'seguro_obligatorio', label: 'Seguro Obligatorio' },
+    { name: 'revision_tecnicomecanica', label: 'Revisión Tecnicomecánica' },
+    { name: 'poliza_garantia', label: 'Poliza de Garantia' }
   ];
 
   const handleImprimirClick = () => {

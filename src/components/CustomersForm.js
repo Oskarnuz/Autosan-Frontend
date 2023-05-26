@@ -4,6 +4,7 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import styles from '@/styles/CustomersForm.module.css';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 import Image from 'next/image';
 
@@ -33,6 +34,8 @@ const CustomersForm = () => {
       
       resetForm();
       const response = await axios.post('http://localhost:8080/api/customer', values);
+      //set cookie
+      Cookies.set('customerValues', JSON.stringify(values));
       router.push('/VehiclePage');
     } catch (error) {
       console.error(error);

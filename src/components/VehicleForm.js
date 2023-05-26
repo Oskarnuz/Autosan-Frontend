@@ -39,7 +39,7 @@ const VehicleForm = () => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      // alert(JSON.stringify(values, null, 2));
+      
       resetForm();
       const response = await axios.post('http://localhost:8080/api/vehicle', values);
       router.push('/InventarioPage');

@@ -4,8 +4,14 @@ import InventarioForm from '../components/InventarioForm';
 import Table from '../components/Table';
 import styles from '@/styles/InventarioPage.module.css';
 import logoImage from '../assets/Autosan.png';
+import CustomersForm from '../components/CustomersForm'
+import Cookies from 'js-cookie'
+import { useRouter } from 'next/router';
 
 const InventarioPage = () => {
+  const router = useRouter();
+  const { numeroOrden } = router.query;
+
   const handlePrint = () => {
     const printOptions = {
       scale: 0.80,
@@ -22,7 +28,7 @@ const InventarioPage = () => {
         <div>
           <div className={styles.ctn_order}>
             <h2>Orden de Servicio</h2>
-            <h2>No. </h2>
+            <h2>No. {numeroOrden}</h2>
             <h3>Cra 9 No. 14C -16 Santa Ana</h3>
             <h3>Cel: 312 564 1152</h3>
           </div>

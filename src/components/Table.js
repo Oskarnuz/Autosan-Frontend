@@ -1,21 +1,23 @@
 import { Formik, Form, Field } from 'formik';
 import styles from '@/styles/Table.module.css'
-import CustomersForm from './CustomersForm';
-import VehicleForm from './VehicleForm';
+import { format } from 'date-fns';
+import CustomersForm from './CustomersForm'
 
-const {fullName, phone, email} = CustomersForm;
-const {brand, model, idCard, color, mileage} = VehicleForm 
+import Cookies from 'js-cookie';
+
+
 const initialValues = {
-  Fecha: '',
-  Asesor: '',
-  Kilometraje: mileage,
-  Cliente: fullName,
-  Celular: phone,
-  Email: email,
-  Marca: brand,
-  Modelo: model,
-  Placa: idCard,
-  Color: color
+  fecha: '',
+  asesor: '',
+  kilometraje: '',
+  cliente: '',
+  celular: '',
+  email: '',
+  marca: '',
+  modelo: '',
+  placa: '',
+  color: '',
+  numeroOrden: ''
 };
 
 const handleSubmit = (values) => {
@@ -23,6 +25,17 @@ const handleSubmit = (values) => {
 };
 
 const Table = () => {
+
+  const currentDate = new Date();
+  const formattedDate = format(currentDate, 'dd/MM/yyyy');
+
+  const customerValues = Cookies.get('customerValues');
+
+  // Assign the cookie values to the initialValues if they exist and are valid JSON
+  const initialValuesWithCookies = customerValues ? { ...initialValues, ...JSON.parse(customerValues) } : initialValues;
+
+
+
   return (
     <div>
       <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -32,29 +45,29 @@ const Table = () => {
               <tr>
                 <td>
                   <label htmlFor="fecha">Fecha:</label>
-                  <Field type="text" id="fecha" name="fecha" />
+                  <Field type="text" id="fecha" name="fecha" value={formattedDate}/>
                 </td>
                 <td>
                   <label htmlFor="asesor">Asesor de Servicio:</label>
                   <Field type="text" id="asesor" name="asesor" />
                 </td>
                 <td>
-                  <label htmlFor="status">Estado de la Orden:</label>
+                  <label htmlFor="status">No Orden:</label>
                   <Field type="text" id="status" name="status" />
                 </td>
               </tr>
               <tr>
                 <td>
                   <label htmlFor="cliente">Cliente:</label>
-                  <Field type="text" id="cliente" name="cliente" />
+                  <Field type="text" id="cliente" name="cliente"  />
                 </td>
                 <td>
                   <label htmlFor="celular">Celular:</label>
-                  <Field type="text" id="celular" name="celular" />
+                  <Field type="text" id="celular" name="celular"  />
                 </td>
                 <td>
                   <label htmlFor="email">Email:</label>
-                  <Field type="text" id="email" name="email" />
+                  <Field type="text" id="email" name="email"  />
                 </td>
                 <td>
                   <label htmlFor="marca">Auto Marca:</label>

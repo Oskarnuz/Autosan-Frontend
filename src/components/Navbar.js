@@ -10,7 +10,7 @@ import styles from "@/styles/Navbar.module.css";
 import LoginForm from "./LoginForm";
 
 const Navbar = () => {
-  const [fullName, setFullName] = useState("");
+  const [fullName, setFullName] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
   const router = useRouter();
   const [cookies, setCookie, removeCookie] = useCookies(['cookieToken', 'cookieName']);
@@ -19,8 +19,8 @@ const Navbar = () => {
     const token = cookies.cookieToken;
     
     if (token) {
-      // const decodedToken = jwtDecode(token);
-      // const { id } = decodedToken;
+      const decodedToken = jwtDecode(token);
+      const { id } = decodedToken;
       
       setLoggedIn(true);
     }
@@ -32,11 +32,11 @@ const Navbar = () => {
         `http://localhost:8080/api/user/${userId}`
       );
       const userData = response.data.data;
-
       setFullName(userData.fullName);
     } catch (error) {
       console.log("Error fetching user data:", error);
     }
+    console.log(userData)
   };
 
   const handleLogout = () => {
@@ -60,7 +60,6 @@ const Navbar = () => {
             <span className={styles.dropdownText}>Hola {fullName} !</span>
             <div >
               <div onClick={() => router.push("/CustomerPage")}>
-                Customer Page
               </div>
               <button onClick={handleLogout}>Logout</button>
             </div>
