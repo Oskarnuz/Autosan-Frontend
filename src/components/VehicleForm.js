@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import { useRouter } from 'next/router';
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
@@ -29,20 +29,47 @@ const SignupSchema = Yup.object().shape({
     .required('Ingrese el color'),
   fuel: Yup.string()
     .required('Ingrese el tipo de combustible'),
-  images: Yup.string()
-    .url('Ingrese una URL válida')
-    .required('Ingrese el enlace del images'),
+  // images: Yup.string()
+  //   .url('Ingrese una URL válida')
+  //   .required('Ingrese el enlace del images'),
 });
 
 const VehicleForm = () => {
   const router = useRouter();
+  const [file, setFile] = useState(null);
+
+  const handlePicture = (e) => {
+    readFile(e.target.files[0])
+    setFile(e.target.files)
+    
+    console.log(file)
+  }
+
+  const readFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file)
+  }
+
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+    const data = new FormData()
+    for(let i = 0; i < file.length; i++) {
+      data.append(`file:${i}`, file[i], file[i].name)
+    }
+
+    const res = await axios.post('http://localhost:8080/test-formdata', data, {
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+
+    const newURL = res.data['file:0']
+
     try {
       
       resetForm();
       const response = await axios.post('http://localhost:8080/api/vehicle', values);
-      router.push('/InventarioPage');
+      router.push('/');
     } catch (error) {
       console.error(error);
     } finally {
@@ -122,7 +149,12 @@ const VehicleForm = () => {
 
             <div className={styles.formGroup}>
               <label htmlFor="images">Fotos:</label>
-              <Field type="text" name="images" />
+              <Field 
+              type="file" 
+              name="file"
+              accept="image/png, image/jpg, image/jpeg"
+              onChange={handlePicture} 
+              />
               <ErrorMessage name="images" component="div" className={styles.formError} />
             </div>
 

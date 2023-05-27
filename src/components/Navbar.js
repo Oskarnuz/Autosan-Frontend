@@ -18,6 +18,7 @@ const Navbar = () => {
   useEffect(() => {
     const token = cookies.cookieToken;
     
+    
     if (token) {
       const decodedToken = jwtDecode(token);
       const { id } = decodedToken;
@@ -59,7 +60,7 @@ const Navbar = () => {
           <div className={styles.dropdown}>
             <span className={styles.dropdownText}>Hola {fullName} !</span>
             <div >
-              <div onClick={() => router.push("/CustomerPage")}>
+              <div onClick={() => router.push("/ListOrdersPage")}>
               </div>
               <button onClick={handleLogout}>Logout</button>
             </div>

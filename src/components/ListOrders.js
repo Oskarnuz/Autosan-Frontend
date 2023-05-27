@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
+import styles from '@/styles/ListOrderPage.module.css';
 
 const OrderList = () => {
   const [orders, setOrders] = useState([]);
@@ -31,24 +32,28 @@ const OrderList = () => {
   
 
   return (
-    <div>
-      <h1>Listado de Órdenes</h1>
+    <section className={styles.container}>
       <div>
-        <button onClick={handleGenerateOrder}>Generar Nueva Orden</button>
+        <h1>Listado de Órdenes</h1>
+        <div className={styles.ctnOrders}>
+          <button onClick={handleGenerateOrder}>Generar Nueva Orden</button>
+        </div>
+        {Array.isArray(orders) ? (
+          orders.map((order) => (
+            <div 
+            className={styles.orders}
+            key={order._id}>
+              <p>No Orden: {order._id}</p>
+              <p>Placa: {order.placa}</p>
+              <p>Fecha: {new Date(order.fecha).toLocaleDateString('es-ES')}</p>
+              <p>Cliente: {order.cliente}</p>
+            </div>
+          ))
+        ) : (
+          <p>No se encontraron órdenes.</p>
+        )}
       </div>
-      {Array.isArray(orders) ? (
-        orders.map((order) => (
-          <div key={order._id}>
-            <p>No Orden: {order._id}</p>
-            <p>Placa: {order.placa}</p>
-            <p>Fecha: {new Date(order.fecha).toLocaleDateString('es-ES')}</p>
-            <p>Cliente: {order.cliente}</p>
-          </div>
-        ))
-      ) : (
-        <p>No se encontraron órdenes.</p>
-      )}
-    </div>
+    </section>
   );
 };
 

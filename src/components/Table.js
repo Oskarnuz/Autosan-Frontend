@@ -14,10 +14,10 @@ const initialValues = {
   celular: '',
   email: '',
   marca: '',
-  modelo: '',
+  modelo_año: '',
   placa: '',
   color: '',
-  numeroOrden: ''
+  
 };
 
 const handleSubmit = (values) => {
@@ -31,7 +31,7 @@ const Table = () => {
 
   const customerValues = Cookies.get('customerValues');
 
-  // Assign the cookie values to the initialValues if they exist and are valid JSON
+
   const initialValuesWithCookies = customerValues ? { ...initialValues, ...JSON.parse(customerValues) } : initialValues;
 
 
@@ -51,10 +51,10 @@ const Table = () => {
                   <label htmlFor="asesor">Asesor de Servicio:</label>
                   <Field type="text" id="asesor" name="asesor" />
                 </td>
-                <td>
+                {/* <td>
                   <label htmlFor="status">No Orden:</label>
                   <Field type="text" id="status" name="status" />
-                </td>
+                </td> */}
               </tr>
               <tr>
                 <td>
@@ -76,7 +76,7 @@ const Table = () => {
               </tr>
               <tr>
                 <td>
-                  <label htmlFor="modelo">Modelo:</label>
+                  <label htmlFor="modelo">Modelo - Año:</label>
                   <Field type="text" id="modelo" name="modelo" />
                 </td>
                 <td>

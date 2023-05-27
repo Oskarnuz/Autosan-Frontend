@@ -89,15 +89,6 @@ Azul: #0b055f */
   line-height: 1.5;
 }
 
-/* .equipos {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  font-family: 'Open Sans', sans-serif;
-  margin-top: 20px;
-} */
-
 .equipos .title {
   height: 30px;
   display: flex;
@@ -128,16 +119,25 @@ Azul: #0b055f */
   width: 150px;
   height: 150px;
   margin-top: 10px;
-  margin-right: 20px; /* Espacio entre las imágenes */
+  margin-right: 20px; 
   transition: transform 0.5s ease-in-out;
 }
 
 .equipos:hover .boxEquipos {
-  transform: translateX(-220px); /* Desplazar las imágenes hacia la izquierda al pasar el cursor */
+  transform: translateX(-220px); 
 }
 
 .textBoxE {
   font-size: 10px;
 }
 
+.orders a {
+  font-family: 'Open Sans', sans-serif;
+  margin-top: 20px;
+  color: white;
+  text-decoration: none; 
+}
+.orders a:hover {
+  color: blue;
+}
 
